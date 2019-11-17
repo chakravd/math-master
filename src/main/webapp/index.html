@@ -1,45 +1,23 @@
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Math Master</title>
-  <style>
+<style>
+    .center {
+        margin: auto;
+        width: 75vw;
+        height: 75vh;
+        border: 1px solid #73AD21;
+        padding: 10px;
+    }
+    li {
+        font-family: 'Open Sans';
+        font-size: 5vw;
+    }
   </style>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
 </head>
-
 <body>
-
-<div class="container">
-    <div id="type0">
-        <button id="invoke0" type="submit" class="btn btn-primary btn-lg btn-block">Add random number by 10</button>
-        <div>
-            <button id="first0" type="button" class="btn btn-outline-primary">0</button> + 
-            <button id="second0" type="button" class="btn btn-outline-primary">0</button> =
-            <button id="result0" type="button" class="btn btn-outline-primary">0</button>
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<script>
-    $(document).ready(function() {
-       $("#invoke0").click(function(e) {
-          $.getJSON("/math/add/random/10", function(res) {
-              fact = JSON.parse(JSON.stringify(res));
-              $("#first0").text(fact.first);
-              $("#second0").text(fact.second);
-              $("#result0").delay(5000).text(fact.result);
-          });
-          e.preventDefault();
-       });
-    });
-</script>
-
+    <ul class="center">
+        <li><a href="addition/random_number_by_10.html">Add random number by 10</a></li>
+        <li><a href="subtraction/random_number_by_10.html">Subtract random number by 10</a></li>
+    </ul>
 </body>
 </html>
