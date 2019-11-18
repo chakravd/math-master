@@ -1,70 +1,104 @@
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>Math Master</title>
-  <style>
-    td {
-        font-family: 'Open Sans';
-        font-size: 15vw;
-    }
-    .center {
-        margin: auto;
-        width: 75vw;
-        height: 75vh;
-        border: 1px solid #73AD21;
-        padding: 10px;
-    }
-    .underline {
-        text-decoration: underline;
-    }
-  </style>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
+	<meta charset="utf-8">
+	<title>Math Master</title>
+	<style>
+		td {
+			text-align: center;
+			font-family: 'Open Sans';
+			font-size: 12vw;
+			width: 15vw;
+			border-width: 1px;
+			border-style: solid;
+			border-color: #0000ff;
+		}
+
+		.center {
+			margin: auto;
+			width: 75vw;
+			height: 75vh;
+			border: 1px solid #d3d3d3;
+			padding: 10px;
+		}
+
+		.underline {
+			text-decoration: underline;
+		}
+	</style>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 
 <body>
-
-<div class="center">
-	<div>
+	<div class="center">
 		<div>
-            <button id="invoke0" class="btn btn-secondary" type="button">
-                Refresh
-            </button> 
+			<img id="invoke0" src="../img/refresh.png" width="16%" height="16%" class="img-fluid" alt=""/>
+	    </div>
 			<div>
-                <table>
-                    <tr>
-                        <td id="first0">0</td>
-                        <td>+</td>
-                        <td id="second0">0</td>
-                        <td>=</td>
-                        <td id="result0">0</td>
-                    </tr>
-                </table>
+				<table>
+					<tr>
+						<td>
+							<div id="first0">0</div>
+						</td>
+						<td>+</td>
+						<td>
+							<div id="second0">0</div>
+						</td>
+						<td>=</td>
+						<td>
+							<div id="result0">0</div>
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
-	</div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+		</script>
 
-<script>
-    $(document).ready(function() {
-       $("#invoke0").click(function(e) {
-          $.getJSON("/math/add/random/10", function(res) {
-              fact = JSON.parse(JSON.stringify(res));
-              $("#first0").text(fact.first);
-              $("#second0").text(fact.second);
-              $("#result0").text(fact.result);
-              $('#result0').addClass("underline").hide().delay(3000).fadeIn(2200);
-          });
-          e.preventDefault();
-       });
-    });
-</script>
+		<script>
+			$.urlParam = function(name) {
+                if(name != null && name != undefined) {
+                    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                    return results[1] || 0;
+                } else {
+                    return 0;
+                }
+            }
+        
+        $(document).ready(function() { 
+            $("#invoke0").click(function(e) {
+                var apiUri;
+                if($.urlParam('total') == 0) {
+                    apiUri = '/math/add/random/10';
+                } else {
+                    apiUri = '/math/add/' + $.urlParam('total');
+                }
+                $.getJSON(apiUri, function(res) {
+                    fact = JSON.parse(JSON.stringify(res));
+                    if($.urlParam('total') == 0) {
+                        $("#first0").text(fact.first);
+                        $("#second0").text(fact.second);
+                        //$("#result0").text(fact.result);
+                        //$('#result0').addClass("underline").hide().delay(3000).fadeIn(2200);
+                        $('#result0').addClass("underline").hide().delay(3000).fadeIn(2200);
+                    } else {
+                        $("#first0").text(fact.first);
+                        $("#second0").text(fact.second);
+                        $("#result0").text(fact.result);
+                        $('#first0').addClass("underline").hide().delay(3000).fadeIn(2200);
+                    }
+                });
+                e.preventDefault();
+            });
+        });
+		</script>
 
 </body>
+
 </html>

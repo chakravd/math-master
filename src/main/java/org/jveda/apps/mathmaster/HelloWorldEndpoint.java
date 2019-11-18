@@ -1,6 +1,5 @@
 package org.jveda.apps.mathmaster;
 
-
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.GET;
