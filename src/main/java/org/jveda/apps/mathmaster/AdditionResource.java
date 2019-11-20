@@ -31,6 +31,7 @@ public class AdditionResource {
         fact.setFirst(randomInt);
         fact.setSecond(10);
         fact.setResult(randomInt + 10);
+        fact.setHelp(build100Table(fact).toString());
         return Response.ok(fact).build();
     }
 
@@ -48,6 +49,7 @@ public class AdditionResource {
         SUMS_COUNTRER_MAP.put(number, counter + 1);
         List<Fact> facts = SUMS_MAP.get(number);
         Fact fact = facts.get(counter);
+        fact.setHelp(buildHelp(fact).toString());
         return Response.ok(fact).build();
     }
 
@@ -64,5 +66,59 @@ public class AdditionResource {
                 SUMS_MAP.put(sum, facts);
             }
         }
+    }
+
+    private StringBuilder buildHelp(Fact fact) {
+        StringBuilder html = new StringBuilder();
+        html.append("<table class=\"number\">");
+        for (int i = 0; i < fact.getResult(); i++) {
+            int counter = 0;
+            if (i % 10 == 0) {
+                html.append("<tr>");
+                counter++;
+            }
+            html.append("<td ");
+            if (i >= fact.getFirst()) {
+                html.append("style=background-color:cyan;");
+            } else {
+                html.append("style=background-color:#daf7a6;");
+            }
+            html.append(">");
+            html.append(i + 1);
+            html.append("</td>");
+            if (counter == 10) {
+                counter = 0;
+                html.append("</tr>");
+            }
+        }
+        html.append("</table>");
+        return html;
+    }
+
+    private StringBuilder build100Table(Fact fact) {
+        StringBuilder html = new StringBuilder();
+        html.append("<table class=\"number\">");
+        for (int i = 0; i < 100; i++) {
+            int counter = 0;
+            if (i % 10 == 0) {
+                html.append("<tr>");
+                counter++;
+            }
+            html.append("<td ");
+            if (i + 1 == fact.getFirst()) {
+                html.append("style=background-color:#daf7a6;");
+            } else if (i + 1 == fact.getResult()) {
+                html.append("style=background-color:cyan;");
+            }
+            html.append(">");
+            html.append(i + 1);
+            html.append("</td>");
+            if (counter == 10) {
+                counter = 0;
+                html.append("</tr>");
+            }
+        }
+        html.append("</table>");
+        return html;
     }
 }

@@ -5,6 +5,7 @@ public class Fact {
     private Integer first;
     private Integer second;
     private Integer result;
+    private String help;
 
     public void setFirst(Integer first) {
         this.first = first;
@@ -28,6 +29,14 @@ public class Fact {
 
     public Integer getResult() {
         return this.result;
+    }
+
+    public String getHelp() {
+        return help;
+    }
+
+    public void setHelp(String help) {
+        this.help = help;
     }
 
 }

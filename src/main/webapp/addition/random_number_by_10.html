@@ -4,20 +4,30 @@
 	<meta charset="utf-8">
 	<title>Math Master</title>
 	<style>
-		td {
+		table.fact td {
 			text-align: center;
 			font-family: 'Open Sans';
 			font-size: 12vw;
 			width: 15vw;
 			border-width: 1px;
 			border-style: solid;
-			border-color: #0000ff;
+			border-color: #d3d3d3;
+		}
+
+		table.number td {
+			text-align: center;
+			font-family: 'Open Sans';
+			font-size: 4vw;
+			width: 4vw;
+			border-width: 1px;
+			border-style: solid;
+			border-color: #d3d3d3;
 		}
 
 		.center {
 			margin: auto;
 			width: 75vw;
-			height: 75vh;
+			height: auto;
 			border: 1px solid #d3d3d3;
 			padding: 10px;
 		}
@@ -33,36 +43,42 @@
 
 <body>
 	<div class="center">
+		<img id="invoke0" src="../img/refresh.png" width="16%" height="16%" class="img-fluid"/>
 		<div>
-			<img id="invoke0" src="../img/refresh.png" width="16%" height="16%" class="img-fluid" alt=""/>
-	    </div>
-			<div>
-				<table>
-					<tr>
-						<td>
-							<div id="first0">0</div>
-						</td>
-						<td>+</td>
-						<td>
-							<div id="second0">0</div>
-						</td>
-						<td>=</td>
-						<td>
-							<div id="result0">0</div>
-						</td>
-					</tr>
-				</table>
-			</div>
+			<table class="fact">
+				<tr>
+					<td bgcolor="#daf7a6">
+						<span id="first0">0</span>
+					</td>
+					<td>
+						<span>+</span>
+					</td>
+					<td bgcolor="cyan">
+						<span id="second0">0</span>
+					</td>
+					<td>
+						<span>=</span>
+					</td>
+					<td>
+						<span id="result0">0</span>
+					</td>
+				</tr>
+			</table>
 		</div>
+		<br>
+		<div>
+			<span id="help-text"></span>
+		</div>
+	</div>
 
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-		</script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
 
-		<script>
-			$.urlParam = function(name) {
+	<script>
+		$.urlParam = function(name) {
                 if(name != null && name != undefined) {
                     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
                     return results[1] || 0;
@@ -71,34 +87,38 @@
                 }
             }
         
-        $(document).ready(function() { 
-            $("#invoke0").click(function(e) {
-                var apiUri;
-                if($.urlParam('total') == 0) {
-                    apiUri = '/math/add/random/10';
-                } else {
-                    apiUri = '/math/add/' + $.urlParam('total');
-                }
-                $.getJSON(apiUri, function(res) {
-                    fact = JSON.parse(JSON.stringify(res));
+            $(document).ready(function() { 
+                $("#invoke0").click(function(e) {
+                    $('#first0').text("").finish();
+                    $('#result0').text("").finish();
+                    var apiUri;
                     if($.urlParam('total') == 0) {
-                        $("#first0").text(fact.first);
-                        $("#second0").text(fact.second);
-                        //$("#result0").text(fact.result);
-                        //$('#result0').addClass("underline").hide().delay(3000).fadeIn(2200);
-                        $('#result0').addClass("underline").hide().delay(3000).fadeIn(2200);
+                        apiUri = '/math/add/random/10';
                     } else {
-                        $("#first0").text(fact.first);
-                        $("#second0").text(fact.second);
-                        $("#result0").text(fact.result);
-                        $('#first0').addClass("underline").hide().delay(3000).fadeIn(2200);
+                        apiUri = '/math/add/' + $.urlParam('total');
                     }
+                    $.getJSON(apiUri, function(res) {
+                        fact = JSON.parse(JSON.stringify(res));
+                        if($.urlParam('total') == 0) {
+                            $("#first0").text(fact.first);
+                            $("#second0").text(fact.second);
+                            $("#result0").text(fact.result);
+                            $("#help-text").html(fact.help);
+                            $('#result0').addClass("underline").hide().delay(3000).fadeIn(3000);
+                            $('#help-text').hide().delay(3000).fadeIn(3000);
+                        } else {
+                            $("#first0").text(fact.first);
+                            $("#second0").text(fact.second);
+                            $("#result0").text(fact.result);
+                            $("#help-text").html(fact.help);
+                            $('#first0').addClass("underline").hide().delay(3000).fadeIn(3000);
+                            $('#help-text').hide().delay(3000).fadeIn(3000);
+                        }
+                    });
+                    e.preventDefault();
                 });
-                e.preventDefault();
             });
-        });
-		</script>
-
+	</script>
 </body>
 
 </html>
