@@ -1,9 +1,9 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>Math Master</title>
-	<style>
+  <meta charset="utf-8">
+  <title>Math Master</title>
+  <style>
 		td {
 			font-family: 'Open Sans';
 			font-size: 15vw;
@@ -20,42 +20,41 @@
 		.underline {
 			text-decoration: underline;
 		}
-	</style>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  </style>
+  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 </head>
 
 <body>
+<div class="center">
+  <div>
+    <div>
+      <button class="btn btn-secondary" id="invoke0" type="button">
+        Refresh
+      </button>
+      <div>
+        <table>
+          <tr>
+            <td id="first0">0</td>
+            <td>-</td>
+            <td id="second0">0</td>
+            <td>=</td>
+            <td id="result0">0</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-	<div class="center">
-		<div>
-			<div>
-				<button id="invoke0" class="btn btn-secondary" type="button">
-                Refresh
-            </button>
-				<div>
-					<table>
-						<tr>
-							<td id="first0">0</td>
-							<td>-</td>
-							<td id="second0">0</td>
-							<td>=</td>
-							<td id="result0">0</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-	</script>
-
-	<script>
+<script crossorigin="anonymous"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+</script>
+<script>
 		$(document).ready(function() {
        $("#invoke0").click(function(e) {
           $.getJSON("/math/subtract/random/10", function(res) {
@@ -68,8 +67,7 @@
           e.preventDefault();
        });
     });
-	</script>
-
+</script>
 </body>
 
 </html>

@@ -1,9 +1,9 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>Math Master</title>
-	<style>
+  <meta charset="utf-8">
+  <title>Math Master</title>
+  <style>
 		table.fact td {
 			text-align: center;
 			font-family: 'Open Sans';
@@ -35,49 +35,49 @@
 		.underline {
 			text-decoration: underline;
 		}
-	</style>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  </style>
+  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 </head>
 
 <body>
-	<div class="center">
-		<img id="invoke0" src="../img/refresh.png" width="16%" height="16%" class="img-fluid"/>
-		<div>
-			<table class="fact">
-				<tr>
-					<td bgcolor="#daf7a6">
-						<span id="first0">0</span>
-					</td>
-					<td>
-						<span>+</span>
-					</td>
-					<td bgcolor="cyan">
-						<span id="second0">0</span>
-					</td>
-					<td>
-						<span>=</span>
-					</td>
-					<td>
-						<span id="result0">0</span>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<br>
-		<div>
-			<span id="help-text"></span>
-		</div>
-	</div>
+<div class="center">
+  <img class="img-fluid" height="16%" id="invoke0" src="../img/refresh.png" width="16%"/>
+  <div>
+    <table class="fact">
+      <tr>
+        <td bgcolor="#daf7a6">
+          <span id="first0">0</span>
+        </td>
+        <td>
+          <span>+</span>
+        </td>
+        <td bgcolor="cyan">
+          <span id="second0">0</span>
+        </td>
+        <td>
+          <span>=</span>
+        </td>
+        <td>
+          <span id="result0">0</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div>
+    <span id="help-text"></span>
+  </div>
+</div>
 
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-	</script>
-
-	<script>
+<script crossorigin="anonymous"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+</script>
+<script>
 		$.urlParam = function(name) {
                 if(name != null && name != undefined) {
                     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -119,7 +119,7 @@
                     e.preventDefault();
                 });
             });
-	</script>
+</script>
 </body>
 
 </html>
