@@ -91,6 +91,7 @@
                 $("#invoke0").click(function(e) {
                     $('#first0').text("").finish();
                     $('#result0').text("").finish();
+                    $('#help-text').text("").finish();
                     var apiUri;
                     if($.urlParam('total') == 0) {
                         apiUri = '/math/add/random/10';
@@ -104,15 +105,15 @@
                             $("#second0").text(fact.second);
                             $("#result0").text(fact.result);
                             $("#help-text").html(fact.help);
-                            $('#result0').addClass("underline").hide().delay(3000).fadeIn(3000);
-                            $('#help-text').hide().delay(3000).fadeIn(3000);
+                            $('#result0').addClass("underline").hide().delay(10000).fadeIn(10000);
+                            $('#help-text').hide().delay(10000).fadeIn(10000);
                         } else {
                             $("#first0").text(fact.first);
                             $("#second0").text(fact.second);
                             $("#result0").text(fact.result);
                             $("#help-text").html(fact.help);
-                            $('#first0').addClass("underline").hide().delay(3000).fadeIn(3000);
-                            $('#help-text').hide().delay(3000).fadeIn(3000);
+                            $('#first0').addClass("underline").hide().delay(10000).fadeIn(10000);
+                            $('#help-text').hide().delay(10000).fadeIn(10000);
                         }
                     });
                     e.preventDefault();
