@@ -1,5 +1,10 @@
 package org.jveda.apps.mathmaster;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import org.jveda.apps.mathmaster.model.Arrange;
 import org.jveda.apps.mathmaster.model.Fact;
 
 public class Util {
@@ -58,5 +63,13 @@ public class Util {
     }
     html.append("</table>");
     return html;
+  }
+
+  public static Arrange buildArrange(List<Integer> numbers) {
+    Arrange arrange = new Arrange();
+    arrange.setUnsorted(numbers);
+    Collections.sort(numbers);
+    arrange.setSorted(numbers);
+    return arrange;
   }
 }

@@ -4,122 +4,120 @@
   <meta charset="utf-8">
   <title>Math Master</title>
   <style>
-		table.fact td {
-			text-align: center;
-			font-family: 'Open Sans';
-			font-size: 12vw;
-			width: 15vw;
-			border-width: 1px;
-			border-style: solid;
-			border-color: #d3d3d3;
-		}
+    table.fact td {
+      text-align: center;
+      font-family: 'Open Sans';
+      font-size: 12vw;
+      width: 15vw;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #d3d3d3;
+    }
 
-		table.number td {
-			text-align: center;
-			font-family: 'Open Sans';
-			font-size: 4vw;
-			width: 4vw;
-			border-width: 1px;
-			border-style: solid;
-			border-color: #d3d3d3;
-		}
+    table.number td {
+      text-align: center;
+      font-family: 'Open Sans';
+      font-size: 4vw;
+      width: 4vw;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #d3d3d3;
+    }
 
-		.center {
-			margin: auto;
-			width: 75vw;
-			height: auto;
-			border: 1px solid #d3d3d3;
-			padding: 10px;
-		}
+    .center {
+      margin: auto;
+      width: 75vw;
+      height: auto;
+      border: 1px solid #d3d3d3;
+      padding: 10px;
+    }
 
-		.underline {
-			text-decoration: underline;
-		}
+    .underline {
+      text-decoration: underline;
+    }
   </style>
   <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 </head>
 
 <body>
-<div class="center">
-  <img class="img-fluid" height="16%" id="invoke0" src="../img/refresh.png" width="16%"/>
-  <div>
-    <table class="fact">
-      <tr>
-        <td bgcolor="#daf7a6">
-          <span id="first0">0</span>
-        </td>
-        <td>
-          <span>+</span>
-        </td>
-        <td bgcolor="cyan">
-          <span id="second0">0</span>
-        </td>
-        <td>
-          <span>=</span>
-        </td>
-        <td>
-          <span id="result0">0</span>
-        </td>
-      </tr>
-    </table>
+  <div class="center">
+    <img class="img-fluid" height="16%" id="invoke0" src="../img/refresh.png" width="16%" />
+    <div>
+      <table class="fact">
+        <tr>
+          <td bgcolor="#daf7a6">
+            <span id="first0">0</span>
+          </td>
+          <td>
+            <span>+</span>
+          </td>
+          <td bgcolor="cyan">
+            <span id="second0">0</span>
+          </td>
+          <td>
+            <span>=</span>
+          </td>
+          <td>
+            <span id="result0">0</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <div>
+      <span id="help-text"></span>
+    </div>
   </div>
-  <br>
-  <div>
-    <span id="help-text"></span>
-  </div>
-</div>
 
-<script crossorigin="anonymous"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script crossorigin="anonymous"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
-</script>
-<script>
-		$.urlParam = function(name) {
-                if(name != null && name != undefined) {
-                    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-                    return results[1] || 0;
-                } else {
-                    return 0;
-                }
-            }
-        
-            $(document).ready(function() { 
-                $("#invoke0").click(function(e) {
-                    $('#first0').text("").finish();
-                    $('#result0').text("").finish();
-                    $('#help-text').text("").finish();
-                    var apiUri;
-                    if($.urlParam('total') == 0) {
-                        apiUri = '/math/add/random/10';
-                    } else {
-                        apiUri = '/math/add/' + $.urlParam('total');
-                    }
-                    $.getJSON(apiUri, function(res) {
-                        fact = JSON.parse(JSON.stringify(res));
-                        if($.urlParam('total') == 0) {
-                            $("#first0").text(fact.first);
-                            $("#second0").text(fact.second);
-                            $("#result0").text(fact.result);
-                            $("#help-text").html(fact.help);
-                            $('#result0').addClass("underline").hide().delay(10000).fadeIn(10000);
-                            $('#help-text').hide().delay(10000).fadeIn(10000);
-                        } else {
-                            $("#first0").text(fact.first);
-                            $("#second0").text(fact.second);
-                            $("#result0").text(fact.result);
-                            $("#help-text").html(fact.help);
-                            $('#first0').addClass("underline").hide().delay(10000).fadeIn(10000);
-                            $('#help-text').hide().delay(10000).fadeIn(10000);
-                        }
-                    });
-                    e.preventDefault();
-                });
-            });
-</script>
+  <script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+  <script>
+    $.urlParam = function (name) {
+      if (name != null && name != undefined) {
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        return results[1] || 0;
+      } else {
+        return 0;
+      }
+    }
+
+    $(document).ready(function () {
+      $("#invoke0").click(function (e) {
+        $('#first0').text("").finish();
+        $('#result0').text("").finish();
+        $('#help-text').text("").finish();
+        var apiUri;
+        if ($.urlParam('total') == 0) {
+          apiUri = '/math/add/random/10';
+        } else {
+          apiUri = '/math/add/' + $.urlParam('total');
+        }
+        $.getJSON(apiUri, function (res) {
+          fact = JSON.parse(JSON.stringify(res));
+          if ($.urlParam('total') == 0) {
+            $("#first0").text(fact.first);
+            $("#second0").text(fact.second);
+            $("#result0").text(fact.result);
+            $("#help-text").html(fact.help);
+            $('#result0').addClass("underline").hide().delay(10000).fadeIn(10000);
+            $('#help-text').hide().delay(10000).fadeIn(10000);
+          } else {
+            $("#first0").text(fact.first);
+            $("#second0").text(fact.second);
+            $("#result0").text(fact.result);
+            $("#help-text").html(fact.help);
+            $('#first0').addClass("underline").hide().delay(10000).fadeIn(10000);
+            $('#help-text').hide().delay(10000).fadeIn(10000);
+          }
+        });
+        e.preventDefault();
+      });
+    });
+  </script>
 </body>
 
 </html>

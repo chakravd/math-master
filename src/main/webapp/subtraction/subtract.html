@@ -90,29 +90,16 @@
         $('#second0').text("").finish();
         $('#result0').text("").finish();
         $('#help-text').text("").finish();
-        var apiUri;
-        if ($.urlParam('total') == 0) {
-          apiUri = '/math/subtract/random/10';
-        } else {
-          apiUri = '/math/subtract/' + $.urlParam('total');
-        }
+        var apiUri = '/math/subtract/' + $.urlParam('number');
         $.getJSON(apiUri, function (res) {
+          var delay = 5000;
           fact = JSON.parse(JSON.stringify(res));
-          if ($.urlParam('total') == 0) {
-            $("#first0").text(fact.first);
-            $("#second0").text(fact.second);
-            $("#result0").text(fact.result);
-            $("#help-text").html(fact.help);
-            $('#result0').addClass("underline").hide().delay(10000).fadeIn(10000);
-            $('#help-text').hide().delay(10000).fadeIn(10000);
-          } else {
-            $("#first0").text(fact.first);
-            $("#second0").text(fact.second);
-            $("#result0").text(fact.result);
-            $("#help-text").html(fact.help);
-            $('#second0').addClass("underline").hide().delay(10000).fadeIn(10000);
-            $('#help-text').hide().delay(10000).fadeIn(10000);
-          }
+          $("#first0").text(fact.first);
+          $("#second0").text(fact.second);
+          $("#result0").text(fact.result);
+          $("#help-text").html(fact.help);
+          $('#result0').addClass("underline").hide().delay(delay).fadeIn(delay);
+          $('#help-text').hide().delay(delay).fadeIn(delay);
         });
         e.preventDefault();
       });

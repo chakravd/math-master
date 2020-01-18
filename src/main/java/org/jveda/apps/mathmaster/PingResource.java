@@ -6,7 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 @Path("/ping")
-public class HelloWorldEndpoint {
+public class PingResource {
   @GET
   @Produces("text/plain")
   public Response doGet() {

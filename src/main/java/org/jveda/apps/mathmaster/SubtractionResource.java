@@ -36,7 +36,7 @@ public class SubtractionResource {
   @GET
   @Path("/{number}")
   @Produces("application/json")
-  public Response randomSum(@PathParam("number") Integer number) {
+  public Response randomDiff(@PathParam("number") Integer number) {
     loadDiffsMap(number);
     Integer noOfFacts = DIFFS_MAP.get(number).size();
     Integer counter = DIFFS_COUNTRER_MAP.get(number) == null ? 0 : DIFFS_COUNTRER_MAP.get(number);
@@ -47,21 +47,18 @@ public class SubtractionResource {
     DIFFS_COUNTRER_MAP.put(number, counter + 1);
     List<Fact> facts = DIFFS_MAP.get(number);
     Fact fact = facts.get(counter);
-    fact.setHelp(Util.buildHelp(fact).toString());
+    //fact.setHelp(Util.buildHelp(fact).toString());
     return Response.ok(fact).build();
   }
 
   private void loadDiffsMap(Integer diff) {
     if (DIFFS_MAP.get(diff) == null) {
       List<Fact> facts = new ArrayList<>();
-      for (int i = diff; i < 0; i--) {
-        if(i < diff) {
-          break;
-        }
+      for (int i = 0; i <= diff; i++) {
         Fact fact = new Fact();
-        fact.setFirst(i);
-        fact.setSecond(i - diff);
-        fact.setResult(diff);
+        fact.setFirst(diff);
+        fact.setSecond(diff - i);
+        fact.setResult(fact.getFirst() - fact.getSecond());
         facts.add(fact);
         Collections.shuffle(facts);
         DIFFS_MAP.put(diff, facts);
